@@ -2,10 +2,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>React</title>
+<style>
+  <%= css %>
+</style>
 </head>
 <body>
-  <div id="react-dom"></div>
+  <div id="react-dom">
+    <%- html %>
+  </div>
 </body>
-<script src="/static/output/bundle.js"></script>
+<script src="/static/output/<%= page %>.bundle.js"></script>
 </html>

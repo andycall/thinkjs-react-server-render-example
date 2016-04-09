@@ -9,6 +9,8 @@ export default class extends Base {
    */
   indexAction(){
     //auto render template file index_index.html
+    this.assign('page', 'home');
+    
     return this.display();
   }
 }
