@@ -3,14 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <title>React</title>
-<style>
-  <%= css %>
-</style>
 </head>
 <body>
-  <div id="react-dom">
-    <%- html %>
-  </div>
+  <div id="react-dom"></div>
 </body>
+<script>
+  window.csrfToken = '<%= __CSRF__ %>'
+  
+</script>
 <script src="/static/output/<%= page %>.bundle.js"></script>
 </html>

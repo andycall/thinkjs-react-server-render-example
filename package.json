@@ -3,11 +3,12 @@
   "description": "application created by thinkjs",
   "version": "1.0.0",
   "scripts": {
-    "start": "node www/development.js",
+    "start": "node www/development.js & webpack --watch --progress",
+    "server": "node www/development.js",
     "compile": "babel --presets es2015-loose,stage-1 --plugins transform-runtime src/ --out-dir app/ --retain-lines",
     "watch-compile": "node -e \"console.log('<npm run watch-compile> no longer need, use <npm start> command direct.');console.log();\"",
     "watch": "npm run watch-compile",
-    "webpack": "node webpack.config.js"
+    "webpack": "webpack --watch --progress"
   },
   "dependencies": {
     "babel-runtime": "6.x.x",
@@ -17,6 +18,8 @@
     "history": "^2.0.1",
     "html-path-loader": "^0.1.10",
     "jquery": "^2.2.3",
+    "moment": "^2.12.0",
+    "phpass": "^0.1.1",
     "react": "^0.14.8",
     "react-dom": "^0.14.8",
     "react-router": "^2.0.1",
@@ -38,6 +41,8 @@
     "babel-preset-stage-0": "^6.3.13",
     "babel-preset-stage-1": "6.x.x",
     "babel-register": "^6.4.3",
+    "browser-sync": "^2.11.2",
+    "browser-sync-webpack-plugin": "^1.0.1",
     "css-loader": "^0.23.1",
     "node-sass": "^3.4.2",
     "sass-loader": "^3.2.0",
