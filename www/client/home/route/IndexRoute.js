@@ -1,5 +1,5 @@
-import Index from '../../../www/client/home/index/index'
-import Test from '../../../www/client/home/test/index'
+import Index from '../index/index'
+import Test from '../test/index'
 
 export default {
   path: '/',

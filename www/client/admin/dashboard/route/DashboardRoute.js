@@ -1,4 +1,4 @@
-import Dashboard from '../../../www/client/admin/dashboard/index'
+import Dashboard from '../index'
 
 export default {
   path: '/',

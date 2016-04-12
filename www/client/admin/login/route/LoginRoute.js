@@ -1,4 +1,4 @@
-import Login from '../../../www/client/admin/login/index'
+import Login from '../index'
 
 export default {
   path: '/',
