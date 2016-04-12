@@ -14,7 +14,7 @@ export default {
       database: 'homework',
       user: 'root',
       password: '',
-      prefix: '',
+      prefix: 'lawyer_',
       encoding: 'utf8'
     }
   }

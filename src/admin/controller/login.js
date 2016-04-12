@@ -3,35 +3,43 @@
 import Base from './base.js'
 
 export default class extends Base {
-  __before() {
-    if (!this.isPost()) {
-      return this.http.redirect('../home/index');
-    }
-  }
-
   async indexAction() {
-    //auto render template file index_index.html
+    let isLogin = await this.isLogin();
 
-    let usermail = this.post('usermail');
-    let userModel = this.model('user');
-    let userInfo = await userModel.where({
-      name: usermail,
-      email: usermail,
-      _logic: 'OR'
-    }).find();
+    let token = await this.session('__CSRF__');
 
-    if (think.isEmpty(userInfo)) {
-      return this.fail('NO_USER');
+    this.assign('token', token);
+
+    if (this.isPost()) {
+      let usermail = this.post('usermail');
+      let password = this.post('password');
+      let ip = this.ip();
+
+      let result = this.model('user').signin(usermail, password, ip);
+
+      if (typeof result === 'string') {
+        return this.fail(result);
+      }
+
+      // TODO 记录行为
+      await this.session('userInfo', result);
+
+      if (this.isAjax()) {
+        this.success({
+          status: 0
+        });
+      }
+      else {
+        this.redirect('/admin/index');
+      }
     }
-
-    // 校验密码
-    let password = this.post('password');
-    if (!userModel.checkPassword(userInfo, password)) {
-      return this.fail('PASSWORD_ERROR');
+    else {
+      if (isLogin) {
+        this.redirect('/admin/index');
+      }
+      else {
+        return this.display();
+      }
     }
-
-    await this.session('userInfo', userInfo);
-
-    return this.success();
   }
 }

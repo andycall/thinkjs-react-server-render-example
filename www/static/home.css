@@ -1,0 +1,15 @@
+#header {
+  position: relative;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  border-bottom: rgba(0, 0, 0, 0.05) 1px solid;
+  -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.1) !important;
+  -moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1) !important;
+  -webkit-transition: all .800s;
+  -moz-transition: all .800s;
+  -o-transition: all .800s;
+  transition: all .800s;
+  background-color: red; }

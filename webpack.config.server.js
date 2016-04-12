@@ -1,32 +1,34 @@
 var path = require('path');
 
-
 module.exports = {
     name: 'server side render',
     entry: {
-      'home': "./view/component/home/server.js" 
+      'home': './www/client/home/server'
     },
     output: {
-        path: path.join(__dirname, 'view', 'output'),
+      path: path.join(__dirname, 'share', 'output'),
         filename: "[name].bundle.js",
         libraryTarget: "commonjs2",
-        publicPath: '/static'
+      publicPath: '/static/'
     },
     target: 'node',
     externals: /^[a-z\-0-9\/]+$/,
     module: {
       loaders: [
         {
-          test: /\.css$/,
-          loaders: [path.join(__dirname, 'webpack-loader', 'style-collector'),'css']
-        },
-        {
-          test: /\.scss$/,
-          loaders: [path.join(__dirname, 'webpack-loader', 'style-collector'), 'css', 'sass']
+          test: /\.(css|less|scss|sass)$/,
+          loaders: ['ignore-stylesheet']
         },
         {
           test: /\.js$/,
-          loaders: ['babel', 'html-path-loader']
+          loaders: ['babel']
+        },
+        {
+          test: /\.(jpe?g|png|gif|svg)$/i,
+          loaders: [
+            'file?hash=sha512&digest=hex&name=[hash].[ext]',
+            'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+          ]
         }
       ]
     },

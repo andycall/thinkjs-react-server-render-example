@@ -1,7 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Client from '../../../view/component/home/client'
+import {match, Router, browserHistory} from 'react-router'
 
-ReactDOM.render(<Client />, document.getElementById('react-dom'))
+import routes from '../../../share/route/home/IndexRoute'
+const {pathname, search, hash} = window.location
+const location = `${pathname}${search}${hash}`
 
-__webpack_require__.p = '/static/output/'
+match({routes, location}, () => {
+  ReactDOM.render(
+    <Router routes={routes} history={browserHistory}/>,
+    document.getElementById('react-dom')
+  )
+})

@@ -14,11 +14,8 @@ export default class extends Base {
     
     this.assign('page', 'home');   
     this.assign('__CSRF__', token);
+    this.assign('html', this.http._body);
     
     return this.display();
-  }
-  
-  loginAction () {
-    
   }
 }

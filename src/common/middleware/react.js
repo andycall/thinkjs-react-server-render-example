@@ -1,8 +1,8 @@
 'use strict';
 
 import React, {DOM, body, div, script} from 'react';
-import ReactDOMServer from 'react-dom/server';
-import path from 'path';
+import {renderToString} from 'react-dom/server';
+import ServerBundle from '../../../share/output/home.bundle'
 
 export default class extends think.middleware.base {
 
@@ -13,11 +13,6 @@ export default class extends think.middleware.base {
      */
     init(http) {
         super.init(http);
-        let defaultOption = {
-          outputPrefix: 'bundle'
-        };
-
-        this.option = think.extend(defaultOption, this.config('react'));
     }
 
     /**
@@ -25,17 +20,7 @@ export default class extends think.middleware.base {
      * @param  {String} content 渲染后的页面字符串
      * @return {Promise} React 服务端渲染后的字符串
      */
-    run(content) {
-        this.tVar = this.http._view.tVar;
-        var page = this.tVar.page;
-        var bundleFile = require(path.join('../../../view/output', page + '.' + this.option.outputPrefix));
-        var html;
-        
-        var pageObj = bundleFile(this.http);
-
-        this.controller.assign('html', html);
-        this.controller.assign('css', css);
-          
-        return content;
+    run() {
+        return ServerBundle(this.http);
     }
 }

@@ -8,15 +8,18 @@ export default class extends think.controller.base {
   async __before () {
     let http = this.http;
     var errorMount = await this.session('errorMount');
+
+    let token = await this.session('__CSRF__');
+    this.assign('token', token);
     
     if (errorMount > 10) {
       this.fail('MAX_MOUNT_ERROR');
     }
-    
-    if (http.controller === 'admin' && http.action === 'login') {
+
+    if (http.controller === 'login' && http.action === 'index') {
       return;
     }
-    
+
     let userInfo = await this.session('userInfo') || {};
     
     if (think.isEmpty(userInfo)) {
@@ -24,7 +27,7 @@ export default class extends think.controller.base {
         return this.fail('NOT_LOGIN');
       }
       else {
-        return this.redirect('../home/index#login');
+        return this.redirect('/admin/login');
       }
     }
     
@@ -38,6 +41,9 @@ export default class extends think.controller.base {
       });
     }
   }
-  
 
+  async isLogin() {
+    let user = await this.session('userInfo') || {};
+    return !think.isEmpty(user);
+  }
 }

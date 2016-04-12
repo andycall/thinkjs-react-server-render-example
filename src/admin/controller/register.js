@@ -11,9 +11,8 @@ import Base from './base.js'
 export default class extends Base {
   __before () {
     if (!this.isPost()) {
-      return this.http.redirect('../home/index');
+      return this.http.redirect('/');
     }
-    
   }
   
   async indexAction () {
@@ -23,7 +22,8 @@ export default class extends Base {
     let ip = this.http.ip();
     
     let userModel = this.model('user');
-        
+
+    // TODO 邮箱验证
     let status = await userModel.addUser({
       username: username,
       password: password,

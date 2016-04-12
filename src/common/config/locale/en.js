@@ -9,5 +9,6 @@ export default {
   DATA_EMPTY: [103, '发送数据为空'],
   ACCOUNT_ERROR: [104, '账号异常'],
   PASSWORD_ERROR: [105, '密码错误'],
-  MAX_MOUNT_ERROR: [106, '今日登陆错误次数超过10次']
+  MAX_MOUNT_ERROR: [106, '今日登陆错误次数超过10次'],
+  USER_DENY: [107, '用户被封禁']
 };
