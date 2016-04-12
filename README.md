@@ -1,5 +1,6 @@
+# thinkjs-react-server-render-example
 
-application created by [ThinkJS](http://www.thinkjs.org)
+基于thinkjs的react后端渲染方案，采用webpack编译, 同时集成了react-router
 
 ## install dependencies
 
