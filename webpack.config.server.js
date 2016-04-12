@@ -5,6 +5,7 @@ module.exports = {
     entry: {
       'home': './www/client/home/server'
     },
+  
     output: {
       path: path.join(__dirname, 'share', 'output'),
         filename: "[name].bundle.js",
