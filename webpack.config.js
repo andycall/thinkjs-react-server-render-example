@@ -1,18 +1,14 @@
 var path = require('path');
 var webpack = require('webpack');
-var WebpackDevServer = require("webpack-dev-server");
 var serverConfig = require('./webpack.config.server')
 var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
+var clients = require('./pages').getClient();
+
 module.exports = [{
   name: 'client side render',
-  entry: {
-    'home': './www/client/home/index',
-    'login': './www/client/admin/login/index',
-    'dashboard': './www/client/admin/dashboard/index',
-    'json-designer': './www/client/json-designer/index'
-  },
+  entry: clients,
   output: {
     path: path.join(__dirname, 'www', 'static'),
     filename: "[name].bundle.js",

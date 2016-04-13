@@ -1,4 +1,4 @@
-import Test from '../test/test2'
+import Test from '../test/index'
 
 export default {
   path: 'test',

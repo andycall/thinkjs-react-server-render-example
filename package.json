@@ -3,7 +3,7 @@
   "description": "application created by thinkjs",
   "version": "1.0.0",
   "scripts": {
-    "start": "node www/development.js & webpack --watch --progress",
+    "start": "webpack --watch --progress & node www/development.js",
     "server": "node www/development.js",
     "compile": "babel --presets es2015-loose,stage-1 --plugins transform-runtime src/ --out-dir app/ --retain-lines",
     "watch-compile": "node -e \"console.log('<npm run watch-compile> no longer need, use <npm start> command direct.');console.log();\"",
@@ -12,13 +12,10 @@
   },
   "dependencies": {
     "babel-runtime": "6.x.x",
-    "css-loader": "^0.23.1",
-    "css-path-loader": "^0.2.15",
-    "extract-text-webpack-plugin": "^1.0.1",
-    "fit-button": "^2.0.40",
     "history": "^2.0.1",
     "html-path-loader": "^0.1.10",
     "jquery": "^2.2.3",
+    "lodash": "^4.10.0",
     "moment": "^2.12.0",
     "phpass": "^0.1.1",
     "react": "^0.14.8",
@@ -28,7 +25,6 @@
     "revalidator": "^0.3.1",
     "superagent": "^1.8.3",
     "superagent-promise": "^1.1.0",
-    "think-react-render": "^1.0.3",
     "thinkjs": "2.1.x"
   },
   "devDependencies": {
@@ -54,8 +50,12 @@
     "sass-loader": "^3.2.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.12.14",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-server": "^1.14.1",
+    "extract-text-webpack-plugin": "^1.0.1",
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andycall/thinkjs-react-server-render-example"
+  },
   "license": "MIT"
 }

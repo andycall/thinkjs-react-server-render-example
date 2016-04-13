@@ -1,16 +1,16 @@
 var path = require('path');
 
+var servers = require('./pages').getServer();
+
+
 module.exports = {
   name: 'server side render',
-  entry: {
-    'home': './www/client/home/server'
-  },
-
+  entry: servers,
   output: {
     path: path.join(__dirname, 'share'),
     filename: "[name].bundle.js",
     libraryTarget: "commonjs2",
-    chunkFilename: '[name].[id].js?[chunkhash]',
+    chunkFilename: '[name].[id].bundle.js',
     publicPath: '/static/'
   },
   target: 'node',

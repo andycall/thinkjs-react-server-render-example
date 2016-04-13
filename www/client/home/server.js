@@ -1,7 +1,7 @@
 import React from 'react'
 import {renderToString} from 'react-dom/server';
 import {match, RouterContext} from 'react-router'
-import routes from './route/IndexRoute'
+import routes from './route/RootRoute'
 
 module.exports = function (http) {
   return new Promise((resolve, reject) => {

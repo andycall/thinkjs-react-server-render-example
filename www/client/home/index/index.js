@@ -6,13 +6,11 @@ require('./index.scss');
 
 export default class Home extends React.Component {
   render() {
-
+    console.log('index page rendering');
     return (
       <div>
         <Navigator />
-        Home pag <a href="/admin/login">login</a>
-        <Link to="/test">Test</Link>
-        {this.props.children}
+        <p><Link to="/test">Go to test page</Link></p>
       </div>
     )
   }
