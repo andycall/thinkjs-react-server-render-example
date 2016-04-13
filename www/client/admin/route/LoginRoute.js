@@ -1,6 +1,6 @@
 import Login from '../login/index'
 
 export default {
-  path: 'admin/login',
+  path: '/admin/login',
   component: Login
 }

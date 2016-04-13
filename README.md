@@ -8,16 +8,26 @@
 npm install
 ```
 
+```
+npm start
+```
+
 ## 如何使用
 
 1. 添加一个叫做admin的模块
 ```
 thinkjs module admin
 ```
-2. 在`www/client` 新建一个`admin`文件夹, 粘贴`www/client/home`文件夹的所有文件
+再添加一个新的控制器
 
-4. 到`www/client/admin`目录下, 修改`route`文件夹下的RootRoute.js里, 将path参数改成`/admin`
-同时还要把TestRoute.js的path参数改成`/admin/test`
+```
+thinkjs controller admin/login
+```
+
+2. 在`www/client` 新建一个`admin`文件夹, 粘贴`www/client/home`文件夹的所有文件
+依照示例,将routes里面的路径依照thinkjs的路由解析填写
+删除多余的模块和页面.
+但是一定要保留client.js和server.js以及root.js
 
 3. 在`pages.js`里为`pages`对象添加如下的配置
 
@@ -107,5 +117,18 @@ module.exports = {
 执行客户端编译的`webpack` 会依照依赖将产出放在`www/static`目录下, 同时所有的css文件会合并成一个整体的css
 执行服务端编译的`webpack` 会剔除所有的依赖, 同时兼容node引入的方式, 并过滤掉代码中引入的css样式, 将产出放在`share`文件夹下面
 
-##### 执行服务端webpack产出的文件将作为`thinkjs`进行后端渲染的入口
+执行服务端webpack产出的文件将作为`thinkjs`进行后端渲染的入口
+同时react-router也将在thinkjs的路由解析之后运行.
 
+#### 路由解析
+前端路由需和后端的路由相对应, 才能实现完美切换.
+
+一个模块的的所有controller 都必须display同一个视图模板文件.
+
+每个控制器返回视图应该是
+
+```
+this.display(this.templateFile);
+```
+
+templateFile 在每一个module的base.js里定义

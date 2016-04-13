@@ -12,8 +12,6 @@ export default class extends think.controller.base {
 
     this.templateFile = path.join(__dirname, '../../../view/home/index_index.html');
 
-    console.log(this.http._reactBody);
-
     this.assign('html', this.http._reactBody);
   }
 }
