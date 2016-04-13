@@ -16,31 +16,53 @@ thinkjs module admin
 ```
 2. 在`www/client` 新建一个`admin`文件夹, 粘贴`www/client/home`文件夹的所有文件
 
-3. 在`pages.js`添加如下的配置
+4. 到`www/client/admin`目录下, 修改`route`文件夹下的RootRoute.js里, 将path参数改成`/admin`
+同时还要把TestRoute.js的path参数改成`/admin/test`
+
+3. 在`pages.js`里为`pages`对象添加如下的配置
 
 ```
-var pages = {
-    admin: {
-        client: './www/client/admin/client.js',
-        server: './www/server/admin/server.js'
-    }
+admin: {
+    client: path.join(__dirname, './www/client/admin/client'),
+    server: path.join(__dirname, './www/client/admin/server')
 }
 ```
 4. 到`src/admin/controller/base.js`文件下, 现在顶部添加代码
 
 ```
+import path from 'path'
 import AdminBundle from '../../../share/home.bundle'
 ```
 
 5. 再给当前文件的`init`方法下面添加如下的代码
 
 ```
-this.templateFile = path.join(__dirname, '../../../view/admin/index_index.html');
-this.reactBody = HomeBundle(http);
-this.assign('html', this.reactBody);
+init (http) {
+    super.init(http);
+
+    this.templateFile = path.join(__dirname, '../../../view/admin/index_index.html');
+    this.reactBody = AdminBundle(http);
+    this.assign('html', this.reactBody);
+  }
 ```
 
-6. 运行`npm start`
+6. 修改`view/admin/index_index.html` 删除内部所有的css和html标签, 替换成下面的样子
+```
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>New ThinkJS Application</title>
+  <link rel="stylesheet" href="/static/admin.css">
+</head>
+<body>
+  <div id="react-dom"><%- html %></div>
+</body>
+<script src="/static/admin.bundle.js"></script>
+</html>
+```
+
+7. 运行`npm start`
 
 ## 细节阐释
 

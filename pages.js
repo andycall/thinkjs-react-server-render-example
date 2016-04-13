@@ -6,6 +6,10 @@ var pages = {
   home: {
     client: path.join(__dirname, './www/client/home/client'),
     server: path.join(__dirname, './www/client/home/server')
+  },
+  admin: {
+    client: path.join(__dirname, './www/client/admin/client'),
+    server: path.join(__dirname, './www/client/admin/server')
   }
 };
 

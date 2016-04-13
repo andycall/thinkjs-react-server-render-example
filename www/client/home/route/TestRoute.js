@@ -1,6 +1,6 @@
 import Test from '../test/index'
 
 export default {
-  path: 'test',
+  path: 'home/test',
   component: Test
 }

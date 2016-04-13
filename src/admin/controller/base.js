@@ -1,6 +1,7 @@
 'use strict';
 
 import path from 'path'
+import AdminBundle from '../../../share/admin.bundle'
 
 export default class extends think.controller.base {
   /**
@@ -10,9 +11,7 @@ export default class extends think.controller.base {
   init(http) {
     super.init(http);
 
-    this.templateFile = path.join(__dirname, '../../../view/home/index_index.html');
-
-    console.log(this.http._reactBody);
+    this.templateFile = path.join(__dirname, '../../../view/admin/index_index.html');
 
     this.assign('html', this.http._reactBody);
   }

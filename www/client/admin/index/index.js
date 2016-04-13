@@ -9,8 +9,7 @@ export default class Home extends React.Component {
     console.log('index page rendering');
     return (
       <div>
-        <Navigator />
-        <p><Link to="/home/test">Go to test page</Link></p>
+        <h2>This is admin page</h2>
       </div>
     )
   }
