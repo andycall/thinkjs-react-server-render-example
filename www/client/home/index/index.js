@@ -11,6 +11,7 @@ export default class Home extends React.Component {
       <div>
         <Navigator />
         <p><Link to="/home/test">Go to test page</Link></p>
+        <p><a href="/admin">Go to Admin</a></p>
       </div>
     )
   }

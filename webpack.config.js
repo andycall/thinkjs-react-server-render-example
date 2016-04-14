@@ -45,7 +45,7 @@ module.exports = [{
       // ./public directory is being served 
       host: 'localhost',
       port: 3002,
-      proxy: 'http://localhost:7890'
+      proxy: 'http://localhost:8360'
     }),
     new ExtractTextPlugin("[name].css")
   ]
