@@ -14,7 +14,7 @@ npm start
 
 ## 如何使用
 
-1. 添加一个叫做admin的模块
+添加一个叫做admin的模块
 ```
 thinkjs module admin
 ```
@@ -24,12 +24,12 @@ thinkjs module admin
 thinkjs controller admin/login
 ```
 
-2. 在`www/client` 新建一个`admin`文件夹, 粘贴`www/client/home`文件夹的所有文件
+在`www/client` 新建一个`admin`文件夹, 粘贴`www/client/home`文件夹的所有文件
 依照示例,将routes里面的路径依照thinkjs的路由解析填写
 删除多余的模块和页面.
 但是一定要保留client.js和server.js以及root.js
 
-3. 在`pages.js`里为`pages`对象添加如下的配置
+在`pages.js`里为`pages`对象添加如下的配置
 
 ```
 admin: {
@@ -37,14 +37,14 @@ admin: {
     server: path.join(__dirname, './www/client/admin/server')
 }
 ```
-4. 到`src/admin/controller/base.js`文件下, 现在顶部添加代码
+到`src/admin/controller/base.js`文件下, 现在顶部添加代码
 
 ```
 import path from 'path'
 import AdminBundle from '../../../share/home.bundle'
 ```
 
-5. 再给当前文件的`init`方法下面添加如下的代码
+再给当前文件的`init`方法下面添加如下的代码
 
 ```
 init (http) {
@@ -56,7 +56,7 @@ init (http) {
   }
 ```
 
-6. 修改`view/admin/index_index.html` 删除内部所有的css和html标签, 替换成下面的样子
+修改`view/admin/index_index.html` 删除内部所有的css和html标签, 替换成下面的样子
 ```
 <!DOCTYPE html>
 <html>
@@ -72,7 +72,7 @@ init (http) {
 </html>
 ```
 
-7. 运行`npm start`
+运行`npm start`
 
 ## 细节阐释
 
