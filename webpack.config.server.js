@@ -23,7 +23,7 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        loaders: ['babel']
+        loaders: ['babel', 'html-path-loader']
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,

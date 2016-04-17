@@ -23,16 +23,27 @@ module.exports = [{
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader')
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!css-path-loader!sass-loader')
+      },
+      {
+        test: /\.less$/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!css-path-loader!less-loader')
       },
       {
         test: /\.js$/,
-        loaders: ['babel']
+        loaders: ['babel', 'html-path-loader']
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loaders: [
-          'file?hash=sha512&digest=hex&name=[hash].[ext]',
+          'file?hash=sha512&digest=hex&limit=3000&name=img/[hash:8].[name].[ext]',
+          'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+        ]
+      },
+      {
+        test: /\.(woff?2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/i,
+        loaders: [
+          'file?hash=sha512&digest=hex&limit=3000&name=font/[hash:8].[name].[ext]',
           'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
         ]
       }
@@ -47,6 +58,8 @@ module.exports = [{
       port: 3002,
       proxy: 'http://localhost:8360'
     }),
-    new ExtractTextPlugin("[name].css")
+    new ExtractTextPlugin("[name].css", {
+      allChunks: true
+    })
   ]
 }, serverConfig]

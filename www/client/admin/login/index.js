@@ -1,13 +1,38 @@
 import React from 'react'
-import {Link} from 'react-router'
+
+
+import './index.less'
+import './font.css'
 
 export default class Test extends React.Component {
-  render() {
-    console.log('login rendering');
+  componentWillMount () {
 
-    return <div>
-      <h2>This is Login page</h2>
-      <div><Link to="/admin">go home</Link></div>
-    </div>
+  }
+
+  componentDidMount () {
+
+  }
+
+  render() {
+
+    return (
+      <div className="_namespace">
+        <div className="container">
+          <h1>Welcome</h1>
+          <form className="form">
+            <input type="text" placeholder="Username" />
+            <input type="password" placeholder="Password" />
+            <button type="submit">Login</button>
+          </form>
+        </div>
+        <ul className="bg-bubbles">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+    )
   }
 }
