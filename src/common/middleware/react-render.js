@@ -9,16 +9,7 @@ import {match, RouterContext} from 'react-router'
  * middleware
  */
 export default class extends think.middleware.base {
-  /**
-   * run
-   * @return {} []
-   */
-  async run() {
-    if (this.http.isAjax() || this.http.isPost()) {
-      return;
-    }
-
-
+  async getReactBody() {
     let moduleName = this.http.module;
     var module = require(path.join('../../../share/' + moduleName + '.bundle.js'))
     let moduleRoutes = module.routes;
@@ -26,7 +17,7 @@ export default class extends think.middleware.base {
 
     let self = this;
 
-    return new Promise((resolve, reject) => {
+    return new Promise(function (resolve, reject) {
       match({routes: moduleRoutes, location: self.http.url}, (error, redirectLocation, renderProps) => {
         if (error) {
           reject(error);
@@ -40,14 +31,26 @@ export default class extends think.middleware.base {
           </ContextComponent>));
         }
         else {
-          self.http.fail('COMPONENT_NOT_FOUND');
+          // self.http.fail('COMPONENT_NOT_FOUND');
+          resolve('');
         }
-      })
-    }).then((body) => {
-      self.http._view.tVar.html = body;
-    }).catch((err) => {
-      console.error(err);
-      this.http.fail(500, err);
-    })
+      });
+    });
+  }
+
+  /**
+   * run
+   * @return {} []
+   */
+  async run() {
+    if (this.http.isAjax() || this.http.isPost()) {
+      return;
+    }
+
+    var body = await this.getReactBody();
+
+    this.http._body = body;
+
+    return body;
   }
 }

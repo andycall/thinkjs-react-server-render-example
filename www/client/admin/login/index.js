@@ -1,6 +1,7 @@
 import React from 'react'
 import SuperAgent from 'superagent'
 import superAgentPromise from 'superagent-promise'
+import {browserHistory} from 'react-router'
 import $ from 'jquery'
 
 var agent = superAgentPromise(SuperAgent, Promise);
@@ -27,12 +28,19 @@ export default class Test extends React.Component {
 
     data.__CSRF__ = this.context.token;
 
-    agent.post('/admin/login', data)
-      .end()
-      .then(function (data) {
-        console.log(data)
-      });
-
+    $.ajax({
+      url: '/admin/login',
+      method: 'POST',
+      data: data,
+      success: function (response) {
+        if (response.errno !== 0) {
+          alert(response.errmsg);
+        }
+        else if (response.data.status === 'ok') {
+          browserHistory.push('/admin/index');
+        }
+      }
+    })
     return false;
   }
 

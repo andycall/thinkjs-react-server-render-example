@@ -11,5 +11,5 @@ export default {
   PASSWORD_ERROR: [105, '密码错误'],
   MAX_MOUNT_ERROR: [106, '今日登陆错误次数超过10次'],
   USER_DENY: [107, '用户被封禁'],
-  COMPONENT_NOT_FOUND: [108, '找不到组件']
+  COMPONENT_NOT_FOUND: [404, '找不到组件']
 };

@@ -15,11 +15,11 @@ export default class extends Base {
     this.assign('token', token);
 
     if (this.isPost()) {
-      let usermail = this.post('usermail');
+      let usermail = this.post('username');
       let password = this.post('password');
       let ip = this.ip();
 
-      let result = this.model('user').signin(usermail, password, ip);
+      let result = await this.model('user').signin(usermail, password, ip);
 
       if (typeof result === 'string') {
         return this.fail(result);
@@ -30,7 +30,7 @@ export default class extends Base {
 
       if (this.isAjax()) {
         this.success({
-          status: 0
+          status: 'ok'
         });
       }
       else {
@@ -38,12 +38,7 @@ export default class extends Base {
       }
     }
     else {
-      if (isLogin) {
-        this.redirect('/admin/index');
-      }
-      else {
-        return this.display(this.templateFile);
-      }
+      return this.display(this.templateFile);
     }
   }
 }

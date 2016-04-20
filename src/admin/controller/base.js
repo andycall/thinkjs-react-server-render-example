@@ -7,13 +7,13 @@ export default class extends think.controller.base {
    * some base method in here
    */
 
-
   async __before () {
     let http = this.http;
     var errorMount = await this.session('errorMount');
 
     let token = await this.session('__CSRF__');
     this.assign('token', token);
+    this.assign('html', this.http._body);
 
     if (errorMount > 10) {
       this.fail('MAX_MOUNT_ERROR');
@@ -26,6 +26,7 @@ export default class extends think.controller.base {
     let userInfo = await this.session('userInfo') || {};
 
     if (think.isEmpty(userInfo)) {
+
       if (this.isAjax()) {
         return this.fail('NOT_LOGIN');
       }
