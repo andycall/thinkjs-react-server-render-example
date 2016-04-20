@@ -6,5 +6,5 @@
  */
 export default {
   logic_before: ["prepend", "csrf"],
-  route_parse: ["append", 'react-render']
+  controller_before: ["prepend", 'react-render']
 }

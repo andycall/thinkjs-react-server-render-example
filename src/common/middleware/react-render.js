@@ -14,8 +14,16 @@ export default class extends think.middleware.base {
    * @return {} []
    */
   async run() {
+    if (this.http.isAjax() || this.http.isPost()) {
+      return;
+    }
+
+
     let moduleName = this.http.module;
-    let moduleRoutes = require(path.join('../../../share/' + moduleName + '.bundle.js'));
+    var module = require(path.join('../../../share/' + moduleName + '.bundle.js'))
+    let moduleRoutes = module.routes;
+    let ContextComponent = module.context;
+
     let self = this;
 
     return new Promise((resolve, reject) => {
@@ -27,16 +35,19 @@ export default class extends think.middleware.base {
           self.http.redirect(redirectLocation);
         }
         else if (renderProps) {
-          resolve(renderToString(<RouterContext {...renderProps}/>));
+          resolve(renderToString(<ContextComponent token={self.http._session.data.__CSRF__}>
+            <RouterContext {...renderProps} />
+          </ContextComponent>));
         }
         else {
           self.http.fail('COMPONENT_NOT_FOUND');
         }
       })
     }).then((body) => {
-      this.http._reactBody = body;
+      self.http._view.tVar.html = body;
     }).catch((err) => {
-      this.http.fail(err);
+      console.error(err);
+      this.http.fail(500, err);
     })
   }
 }

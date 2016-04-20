@@ -4,8 +4,6 @@
     "script": "www/development.js",
     "watch"       : true,
     "cwd": "/Users/andycall/baiduYun/毕业设计/website",
-    "exec_mode": "cluster",
-    "instances": 0,
     "max_memory_restart": "1G",
     "autorestart": true,
     "node_args": [],
