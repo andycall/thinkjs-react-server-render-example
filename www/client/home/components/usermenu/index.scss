@@ -1,0 +1,20 @@
+._namespace {
+  position: fixed;
+  top: 10px;
+  right: 0;
+  margin-bottom: 0;
+  z-index: 1010;
+}
+
+.login {
+  position: relative;
+  top: 7px;
+  float: right;
+  padding: 0 2px;
+  margin-right: 8px;
+  font-size: 16px;
+
+  i {
+    margin-right: 3px;
+  }
+}

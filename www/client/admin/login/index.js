@@ -4,8 +4,6 @@ import superAgentPromise from 'superagent-promise'
 import {browserHistory} from 'react-router'
 import $ from 'jquery'
 
-var agent = superAgentPromise(SuperAgent, Promise);
-
 import './index.less'
 import './font.css'
 
@@ -34,7 +32,7 @@ export default class Test extends React.Component {
       data: data,
       success: function (response) {
         if (response.errno !== 0) {
-          alert(response.errmsg);
+          console.log(response);
         }
         else if (response.data.status === 'ok') {
           browserHistory.push('/admin/index');

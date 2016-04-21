@@ -31,8 +31,8 @@ export default class extends think.middleware.base {
           </ContextComponent>));
         }
         else {
-          // self.http.fail('COMPONENT_NOT_FOUND');
-          resolve('');
+          self.http.fail('COMPONENT_NOT_FOUND');
+          // resolve('404 not found');
         }
       });
     });

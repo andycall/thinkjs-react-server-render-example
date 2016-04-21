@@ -7,7 +7,7 @@ export default {
   getChildRoutes(location, cb) {
     // 使用require.ensure 来动态加载其他页面的组件
     require.ensure([], (require) => {
-      cb(null, [require('./TestRoute')])
+      cb(null, [require('./RegisterRoute'), require('./LoginRoute')])
     })
   },
   indexRoute: {

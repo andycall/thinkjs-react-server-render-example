@@ -1,5 +1,4 @@
 import React from 'react'
-import {Link} from 'react-router'
 import Navigator from '../components/navigator/index'
 import ContentContainer from '../components/contentContainer/index'
 import LeftImage from '../components/leftImage/index'
@@ -17,8 +16,7 @@ export default class Home extends React.Component {
           <LeftImage />
           <UserMenu />
           <div className="rightContent">
-            <p><Link to="/home/test">Go to test page</Link></p>
-            <p><Link activeClassName="active" to="/admin">Go to Admin</Link></p>
+            The register page
           </div>
         </ContentContainer>
       </div>
