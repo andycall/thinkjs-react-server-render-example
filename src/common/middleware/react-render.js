@@ -9,13 +9,21 @@ import {match, RouterContext} from 'react-router'
  * middleware
  */
 export default class extends think.middleware.base {
+  isLogin () {
+    let userInfo = this.http._session.data.userInfo;
+
+    return !think.isEmpty(userInfo);
+  }
+
+
   async getReactBody() {
     let moduleName = this.http.module;
-    var module = require(path.join('../../../share/' + moduleName + '.bundle.js'))
+    var module = require(path.join('../../../share/' + moduleName + '.bundle.js'));
     let moduleRoutes = module.routes;
     let ContextComponent = module.context;
 
     let self = this;
+    let isLogin = await this.isLogin();
 
     return new Promise(function (resolve, reject) {
       match({routes: moduleRoutes, location: self.http.url}, (error, redirectLocation, renderProps) => {
@@ -26,12 +34,13 @@ export default class extends think.middleware.base {
           self.http.redirect(redirectLocation);
         }
         else if (renderProps) {
-          resolve(renderToString(<ContextComponent token={self.http._session.data.__CSRF__}>
+          resolve(renderToString(<ContextComponent token={self.http._session.data.__CSRF__} isLogin={isLogin}>
             <RouterContext {...renderProps} />
           </ContextComponent>));
         }
         else {
-          self.http.fail('COMPONENT_NOT_FOUND');
+          // self.http.fail('COMPONENT_NOT_FOUND');
+          resolve('');
           // resolve('404 not found');
         }
       });

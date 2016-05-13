@@ -2,8 +2,12 @@ import React from 'react'
 
 export default class ContextComponent extends React.Component {
   getChildContext() {
+    let { token, isLogin, username} = this.props;
+
     return {
-      token: this.props.token
+      token,
+      isLogin,
+      username
     };
   }
 
@@ -13,5 +17,7 @@ export default class ContextComponent extends React.Component {
 }
 
 ContextComponent.childContextTypes = {
-  token: React.PropTypes.string
+  token: React.PropTypes.string,
+  isLogin: React.PropTypes.bool,
+  username: React.PropTypes.string
 }

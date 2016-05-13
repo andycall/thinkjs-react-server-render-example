@@ -4,6 +4,7 @@ import Navigator from '../components/navigator/index'
 import ContentContainer from '../components/contentContainer/index'
 import LeftImage from '../components/leftImage/index'
 import UserMenu from '../components/usermenu/index'
+import PageList from '../components/pageList/index'
 
 require('./index.scss');
 
@@ -17,8 +18,7 @@ export default class Home extends React.Component {
           <LeftImage />
           <UserMenu />
           <div className="rightContent">
-            <p><Link to="/home/test">Go to test page</Link></p>
-            <p><Link activeClassName="active" to="/admin">Go to Admin</Link></p>
+            <PageList />
           </div>
         </ContentContainer>
       </div>

@@ -4,6 +4,12 @@ import {PasswordHash} from 'phpass';
 import moment from 'moment'
 
 export default class extends think.model.base {
+  init (...args) {
+    super.init(...args);
+    this.tableName = "user"
+  }
+
+
   getEncryptPassword(password) {
     let passwordHash = new PasswordHash();
     let hash = passwordHash.hashPassword(password);
@@ -60,11 +66,14 @@ export default class extends think.model.base {
     let createTime = moment().format('YYYY-MM-DD HH:mm:ss');
     let encryptPassword = this.getEncryptPassword(data.password);
 
+    let type = data.type || 0;
+
     return this.where({
       name: data.username, email: data.email, _logic: 'OR'
     }).thenAdd({
       name: data.username,
       email: data.email,
+      type: type,
       password: encryptPassword,
       create_time: createTime,
       create_ip: ip

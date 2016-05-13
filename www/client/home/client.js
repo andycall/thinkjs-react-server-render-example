@@ -12,9 +12,11 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 import './global.scss'
 
+import './plugin'
+
 match({routes, location}, () => {
   ReactDOM.render(
-    <ContextComponent token={window.csrfToken}>
+    <ContextComponent token={window.csrfToken} {...window.clientData}>
       <Router routes={routes} history={browserHistory}/>
     </ContextComponent>,
     document.getElementById('react-dom')

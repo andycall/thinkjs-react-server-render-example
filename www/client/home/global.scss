@@ -11,6 +11,14 @@ body {
     text-decoration: none;
   }
 
+  i.fa {
+    color: #999999;
+
+    &:hover {
+      color: lighten(#999999, 20%);
+    }
+  }
+
   .rightContent {
     margin-left: 25%;
     width: 75%;

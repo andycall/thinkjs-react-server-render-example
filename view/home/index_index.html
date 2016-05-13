@@ -8,10 +8,11 @@
 </head>
 
 <body>
-<div id="react-dom"><%- html %></div>
+<div id="react-dom"></div>
 </body>
 <script>
   window.csrfToken = '<%= __CSRF__ %>'
+  window.clientData = JSON.parse(decodeURIComponent('<%= __CLIENT_DATA__ %>'));
 </script>
 <script src="/static/home.bundle.js"></script>
 </html>

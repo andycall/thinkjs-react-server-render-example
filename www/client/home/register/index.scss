@@ -1,0 +1,88 @@
+.login-page {
+  padding: 125px 0 50px;
+  text-align: center;
+
+  h4.title {
+    margin: 70px auto 50px;
+    border-bottom: 1px solid #eeeeee;
+    color: #b1b1b1;
+
+    span {
+      position: relative;
+      top: 10px;
+      padding: 0 30px;
+    }
+  }
+
+  form {
+    width: 300px;
+    padding-bottom: 15px;
+    margin: 0 auto 25px;
+    border-bottom: 1px solid #eeeeee;
+
+
+    span.add-on {
+      display: inline-block;
+      width: 46px;
+      height: 44px;
+      background: none;
+      font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+      font-size: 12px;
+      font-weight: normal;
+      line-height: 46px;
+      text-align: center;
+      border-bottom-left-radius: 4px;
+      border-top-left-radius: 4px;
+      border: 1px solid #ccc;
+      vertical-align: middle;
+      margin-right: -1px;
+    }
+
+    input {
+      vertical-align: middle;
+      width: 228px;
+      width: calc(100% - 48px);
+      height: 44px;
+      padding: 4px 12px;
+      box-sizing: border-box;
+      position: relative;
+      margin-bottom: 0;
+      border-radius: 0 4px 4px 0;
+      border: 1px solid #cccccc;
+      box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+      transition: border linear 0.2s, box-shadow linear 0.2s;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: rgba(82,168,236,0.8);
+      outline: thin dotted \9;
+      -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(82,168,236,0.6);
+      -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(82,168,236,0.6);
+      box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(82,168,236,0.6);
+    }
+
+    .ladda-button {
+      width: 100%;
+      border: 1px solid transparent;
+      background: #49be38;
+      color: white;
+      padding: 14px 18px;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 2px;
+      -webkit-appearance: none;
+      -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) all !important;
+
+      &:hover, &:focus {
+        color: white;
+        border-color: #6bd95b;
+        background-color: #6bd95b;
+      }
+    }
+  }
+
+
+}

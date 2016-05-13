@@ -7,6 +7,38 @@ import './index.scss'
 
 export default class Navigator extends React.Component {
   render() {
+    let isLogin = this.context.isLogin;
+    let loginToolKit;
+
+    if (isLogin) {
+      loginToolKit = (
+      <a className="signin" href="/home/login/logout">
+        <Tooltip
+          placement="right"
+          overlay={'登出'}
+          mouseEnterDelay={0.1}
+          animation="zoom"
+        >
+          <i className="fa fa-sign-in" />
+        </Tooltip>
+      </a>
+      )
+    }
+    else {
+      loginToolKit = (
+        <Link className="signin" to="/home/login">
+          <Tooltip
+            placement="right"
+            overlay={'登入'}
+            mouseEnterDelay={0.1}
+            animation="zoom"
+          >
+            <i className="fa fa-sign-in" />
+          </Tooltip>
+        </Link>
+      )
+    }
+
     return (
       <div className="_namespace">
         <div className="dropdown">
@@ -32,9 +64,13 @@ export default class Navigator extends React.Component {
           </Tooltip>
         </div>
         <div className="users">
-          
+          {loginToolKit}
         </div>
       </div>
     )
   }
 }
+
+Navigator.contextTypes = {
+  isLogin: React.PropTypes.bool
+};
