@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router'
+import {Link, IndexLink} from 'react-router'
 import Tooltip from 'rc-tooltip'
 
 import 'rc-tooltip/assets/bootstrap.css'
@@ -48,9 +48,9 @@ export default class Navigator extends React.Component {
             overlay={'helloworld'}
             animation="zoom"
           >
-            <Link className="home" activeClassName="active" to="/">
+            <IndexLink className="home" to="/" activeClassName="active">
               <b>坛</b>
-            </Link>
+            </IndexLink>
           </Tooltip>
           <Tooltip
             placement="right"
@@ -58,8 +58,8 @@ export default class Navigator extends React.Component {
             mouseEnterDelay={0.1}
             animation="zoom"
           >
-            <Link to="/test" activeClassName="active">
-              <i className="fa fa-th"></i>
+            <Link className="home" to="/home/write" activeClassName="active">
+              <i className="fa fa-pencil"></i>
             </Link>
           </Tooltip>
         </div>

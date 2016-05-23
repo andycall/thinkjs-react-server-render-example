@@ -14,9 +14,19 @@ import './global.scss'
 
 import './plugin'
 
+console.error = (function() {
+  var error = console.error
+
+  return function(exception) {
+    if ((exception + '').indexOf('Warning: A component is `contentEditable`') != 0) {
+      error.apply(console, arguments)
+    }
+  }
+})()
+
 match({routes, location}, () => {
   ReactDOM.render(
-    <ContextComponent token={window.csrfToken} {...window.clientData}>
+    <ContextComponent {...window.clientData}>
       <Router routes={routes} history={browserHistory}/>
     </ContextComponent>,
     document.getElementById('react-dom')

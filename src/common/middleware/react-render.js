@@ -23,7 +23,6 @@ export default class extends think.middleware.base {
     let ContextComponent = module.context;
 
     let self = this;
-    let isLogin = await this.isLogin();
 
     return new Promise(function (resolve, reject) {
       match({routes: moduleRoutes, location: self.http.url}, (error, redirectLocation, renderProps) => {
@@ -31,17 +30,15 @@ export default class extends think.middleware.base {
           reject(error);
         }
         else if (redirectLocation) {
-          self.http.redirect(redirectLocation);
+          resolve(self.http.redirect(redirectLocation));
         }
         else if (renderProps) {
-          resolve(renderToString(<ContextComponent token={self.http._session.data.__CSRF__} isLogin={isLogin}>
+          resolve(renderToString(<ContextComponent {...JSON.parse(decodeURIComponent(self.http._view.tVar.__CLIENT_DATA__))}>
             <RouterContext {...renderProps} />
           </ContextComponent>));
         }
         else {
-          // self.http.fail('COMPONENT_NOT_FOUND');
-          resolve('');
-          // resolve('404 not found');
+          resolve('component not found');
         }
       });
     });
@@ -51,15 +48,10 @@ export default class extends think.middleware.base {
    * run
    * @return {} []
    */
-  async run() {
-    if (this.http.isAjax() || this.http.isPost()) {
-      return;
-    }
+  async run(content) {
 
-    var body = await this.getReactBody();
+    let data = await this.getReactBody();
 
-    this.http._body = body;
-
-    return body;
+    return content.replace(/\{html\}/, data);
   }
 }

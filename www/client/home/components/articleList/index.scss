@@ -1,0 +1,156 @@
+._namespace {
+  display: block;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  margin-left: 0%;
+  font-size: 14px;
+  line-height: 20px;
+  color: #555555;
+  padding-left: 0;
+  border-left: 1px solid #d9d9d9;
+  border-right: 1px solid #d9d9d9;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.new-note {
+  border-bottom: 1px solid #d9d9d9;
+
+  .new-note-link {
+    display: block;
+    padding: 5px 10px 5px 20px;
+    margin-top: 8px;
+    font-style: italic;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 20px;
+
+    &:hover {
+      color: black;
+    }
+
+
+    .fa {
+      display: inline-block;
+      font: normal normal normal 14px/1 FontAwesome;
+      font-size: inherit;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      transform: translate(0, 0);
+      color: inherit;
+    }
+
+    .fa-pencil {
+      font-size: 18px;
+      margin-right: 5px;
+    }
+  }
+}
+
+.nav-lists {
+  padding: 0;
+  margin-bottom: 0;
+
+  a {
+    text-decoration: none;
+  }
+
+  .one-note {
+    &.active {
+      background-color: #d1c091;
+      color: #eeeeee;
+      text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
+      box-shadow: inset 0px 0px 10px rgba(0,0,0,0.2);
+      -webkit-transition: background-color 0.3s linear;
+      -moz-transition: background-color 0.3s linear;
+      -o-transition: background-color 0.3s linear;
+      transition: background-color 0.3s linear;
+
+      .title {
+        color: white;
+      }
+
+      .abbreviate {
+        color: #eeeeee;
+      }
+
+      &:hover {
+        background-color: #d1c091;
+        color: #eeeeee;
+        text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
+        box-shadow: inset 0px 0px 10px rgba(0,0,0,0.2);
+        -webkit-transition: background-color 0.3s linear;
+        -moz-transition: background-color 0.3s linear;
+        -o-transition: background-color 0.3s linear;
+        transition: background-color 0.3s linear;
+      }
+    }
+
+    &:hover {
+      text-decoration: none;
+      background-color: transparent;
+      box-shadow: 0 1px 7px rgba(0,0,0,0.15);
+    }
+
+    position: relative;
+    max-height: 90px;
+    height: 90px;
+    border-bottom: 1px solid #d9d9d9;
+
+    .icon-note {
+      position: absolute;
+      top: 30px;
+      left: 20px;
+      width: 22px;
+      height: 30px;
+      background-position: 0 -25px;
+      background-image: url(http://cdn-qn0.jianshu.io/assets/sprite-1d28b1a5e9c3a6854a8c262666504212.png);
+      background-image: url(http://cdn-qn0.jianshu.io/assets/sprite_for_ie-cc644caf48613f506878d8876df45eff.png) \9;
+      background-repeat: no-repeat;
+      background-size: 250px;
+    }
+
+    &.active .icon-note {
+      background-position: -25px -25px;
+    }
+
+    .abbreviate {
+      position: absolute;
+      top: 40px;
+      left: 60px;
+      right: 40px;
+      max-height: 30px;
+      height: 30px;
+      margin: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 11px;
+      font-weight: normal;
+      line-height: 36px;
+      text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
+    }
+
+    .title {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      padding: 15px 40px 15px 60px;
+      margin: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 18px;
+      font-weight: normal;
+      line-height: 36px;
+      text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
+    }
+  }
+}
+

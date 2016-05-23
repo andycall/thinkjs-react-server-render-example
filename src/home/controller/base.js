@@ -7,8 +7,16 @@ export default class extends think.controller.base {
    * some base method in here
    */
 
-  async __before() {
-    this.assign('html', this.http._body);
+  __before () {
+    this.__CLIENT_DATA__ = {};
+    this.templateFile = path.join(__dirname, '../../../view/home/index_index.html');
+
+    let oldDisplay = this.display;
+    this.display = (...args) => {
+
+      this.assign('__CLIENT_DATA__', encodeURIComponent(JSON.stringify(this.__CLIENT_DATA__)));
+      oldDisplay.apply(this, args);
+    }
   }
 
   async isLogin() {
@@ -21,19 +29,16 @@ export default class extends think.controller.base {
     super.init(http);
 
     let isLogin = await this.isLogin();
+    let token = await this.session('__CSRF__');
 
-    let __CLIENT_DATA__ = {};
-
-    __CLIENT_DATA__.isLogin = isLogin;
+    this.__CLIENT_DATA__.isLogin = isLogin
 
     if (isLogin) {
       let user = await this.session('userInfo');
 
-      __CLIENT_DATA__.username = user.name;
-      __CLIENT_DATA__.avatar = user.avatar;
+      this.__CLIENT_DATA__.username = user.name;
+      this.__CLIENT_DATA__.avatar = user.avatar;
+      this.__CLIENT_DATA__.token = token;
     }
-
-    this.assign('__CLIENT_DATA__', encodeURIComponent(JSON.stringify(__CLIENT_DATA__)));
-    this.templateFile = path.join(__dirname, '../../../view/home/index_index.html');
   }
 }

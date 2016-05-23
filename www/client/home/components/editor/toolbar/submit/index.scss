@@ -1,0 +1,17 @@
+._namespace {
+  float: right;
+}
+
+a {
+  padding: 11px 14px;
+  display: inline-block;
+  line-height: 17px;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #555555;
+    color: white;
+    text-decoration: inherit;
+  }
+}

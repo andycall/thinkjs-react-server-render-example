@@ -1,0 +1,64 @@
+._namespace {
+  position: relative;
+  float: left;
+  border-left: 1px solid #d9d9d9;
+  border-right: 1px solid #d9d9d9;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-left: 0%;
+
+  padding: 20px 0 0 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.title {
+  width: 100%;
+  padding: 10px 20px 10px 30px;
+  margin-bottom: 0;
+  border: 0;
+  border-bottom: 1px solid #d9d9d9;
+  font-size: 30px;
+  font-weight: normal;
+  line-height: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-radius: 0;
+  box-shadow: none;
+
+  height: 50px;
+  outline: none;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+}
+
+
+.editor {
+  .editor-wrapper {
+    padding: 30px;
+    color: #2f2f2f;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.7;
+
+    .public-DraftEditor-content {
+      height: 100%;
+    }
+  }
+
+  .toolbar {
+    margin: 0;
+    padding: 0;
+    height: 40px;
+    list-style-type: none;
+    background-color: #dedede;
+    border-bottom: 1px solid #d9d9d9;
+  }
+}

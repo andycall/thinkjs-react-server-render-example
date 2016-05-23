@@ -1,0 +1,13 @@
+._namespace {
+  position: relative;
+}
+
+.rightContainer {
+  min-height: 300px;
+  overflow: hidden;
+
+  &:after {
+    content: ' ';
+    clear: both;
+  }
+}
