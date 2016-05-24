@@ -3,8 +3,10 @@ import {
   Editor,
   EditorState,
   RichUtils,
-  convertToRaw
+  convertToRaw,
+  convertFromRaw
 } from 'draft-js';
+import { browserHistory } from 'react-router'
 
 import './index.scss'
 import 'draft-js/dist/Draft.css'
@@ -21,7 +23,8 @@ export default class MyEditor extends React.Component {
       editorState: EditorState.createEmpty(),
       height: 1000,
       title: '',
-      loadEditor: false
+      loadEditor: false,
+      mode: 'new'
     };
     this.onChange = (editorState) => this.setState({editorState});
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
@@ -30,11 +33,16 @@ export default class MyEditor extends React.Component {
   componentDidMount () {
     window.addEventListener('resize', this.resizeHeight.bind(this));
 
+    this.getEditStateFromPageId();
 
     this.setState({
       height: window.innerHeight - 120,
       loadEditor: true
     })
+  }
+
+  componentWillReceiveProps (nextProps) {
+    this.getEditStateFromPageId(nextProps.pageId);
   }
 
   componentWillUnMount () {
@@ -64,25 +72,53 @@ export default class MyEditor extends React.Component {
     })
   }
 
-  handleSubmit (content) {
+  getEditStateFromPageId (pageId) {
+    let postList = this.context.postList;
+    pageId = (pageId || pageId === 0) || this.props.pageId;
+    let postData = postList.data.filter((val) => {
+      return val.article_id === parseInt(pageId);
+    });
+
+    if (postData.length < 1) {
+      return this.setState({
+        editorState: EditorState.createEmpty(),
+        title: '',
+        mode: 'new'
+      })
+    }
+
+    let rawContentState = JSON.parse(postData[0].article_obj);
+    let contentState = convertFromRaw(rawContentState);
+
+    this.setState({
+      editorState: EditorState.createWithContent(contentState),
+      title: postData[0].article_title,
+      mode: 'update'
+    })
+  }
+
+  handleSubmit (content, contentObj) {
     $.ajax({
       url: '/home/write/submit',
       method: 'POST',
       data: {
+        id: this.props.pageId,
         title: this.state.title,
         content: content,
+        obj: JSON.stringify(contentObj),
+        mode: this.state.mode,
         __CSRF__: this.context.token
       },
       success: (response) => {
-        console.log(response);
+        if (response.errno === 0) {
+          location.reload();
+        }
       }
     })
   }
 
   render() {
-
     const {editorState} = this.state;
-
     let editor;
 
     if (this.state.loadEditor) {
@@ -99,7 +135,7 @@ export default class MyEditor extends React.Component {
         <div className="editor">
           <ul className="toolbar">
             <Bold onChange={this.onChange} editorState={this.state.editorState} />
-            <Submit onSubmit={this.handleSubmit.bind(this)} editorState={this.state.editorState} />
+            <Submit mode={this.state.mode} onSubmit={this.handleSubmit.bind(this)} editorState={this.state.editorState} />
           </ul>
           <div className="editor-wrapper" style={{
               height: this.state.height
@@ -113,5 +149,6 @@ export default class MyEditor extends React.Component {
 }
 
 MyEditor.contextTypes = {
-  token: React.PropTypes.string
+  token: React.PropTypes.string,
+  postList: React.PropTypes.object
 }

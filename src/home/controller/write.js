@@ -20,27 +20,44 @@ export default class extends Base {
   async indexAction() {
     //auto render template file index_index.html
 
-    this.__CLIENT_DATA__.postList = await this.listAction();
+    let userInfo = await this.session('userInfo');
+
+    this.__CLIENT_DATA__.postList = await this.getList(userInfo.id);
 
     return this.display(this.templateFile);
   }
 
-  async listAction () {
+  async getList (user_id) {
     let page = this.get('page') || 0;
     let limit = this.get('limit') || 10;
     let model = this.model('article');
 
-    return await model.page(page, limit).countSelect();
+    return model.getArticleByUserID(user_id, page, limit);
+  }
+
+  async listAction () {
+    let postList = await this.getList();
+
+    return this.success(postList);
   }
 
   async submitAction () {
     let data = this.post();
+    let mode = data.mode;
 
     let model = this.model('article');
-
     let userInfo = await this.session('userInfo');
+    let insertId;
 
-    let insertId = await model.addArticle(userInfo.id, data.title, data.content);
+    if (mode === 'new') {
+      insertId = await model.addArticle(userInfo.id, data.title, data.content, data.obj);
+    }
+    else if (mode === 'update'){
+      insertId = await model.updateArticle(data.id, data.title, data.content, data.obj);
+    }
+    else {
+      return this.fail('unknown editor mode')
+    }
 
     return this.success(insertId);
   }

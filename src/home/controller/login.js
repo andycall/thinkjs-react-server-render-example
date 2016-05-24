@@ -9,7 +9,6 @@ export default class extends Base {
    * @return {Promise} []
    */
   async indexAction() {
-
     let isLogin = await this.isLogin();
 
     if (isLogin) {
@@ -51,7 +50,6 @@ export default class extends Base {
       }
 
       let ip = this.ip();
-
       let result = await this.model('admin/user').signin(email, password, ip);
 
       if (typeof result === 'string') {

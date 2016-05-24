@@ -1,27 +1,22 @@
 import React from 'react'
-import classNames from 'classnames'
 
 import './index.scss'
-
-import image from './image/a.jpg'
 
 export default class PageList extends React.Component {
 
   render () {
-    return (
-      <ul className="_namespace">
-        <li>
-          <a href="#" className="list-img" style={{
-            backgroundImage: 'url(' + image + ')'
-          }} />
+
+    let articleList = this.context.articleList.data.map((val, index) => {
+      return (
+        <li key={index}>
           <div>
             <div className="list-top">
-              <a href="www.baidu.com" className="author-name">{this.props.writer}   </a>
+              <a href="www.baidu.com" className="author-name">{val.name}</a>
               <em> · </em>
-              <span className="time">4天之前</span>
+              <span className="time">{val.create_time}</span>
             </div>
             <h3 className="list-title">
-              <a href="#">{this.props.title}</a>
+              <a href="#">{val.article_title}</a>
             </h3>
             <div className="list-bottom">
               <span>阅读 {this.props.read}</span>
@@ -32,7 +27,17 @@ export default class PageList extends React.Component {
             </div>
           </div>
         </li>
+      )
+    });
+
+    return (
+      <ul className="_namespace">
+        {articleList}
       </ul>
     )
   }
+}
+
+PageList.contextTypes = {
+  articleList: React.PropTypes.object
 }

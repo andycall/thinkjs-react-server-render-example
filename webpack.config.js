@@ -48,12 +48,11 @@ module.exports = [{
       }
     ]
   },
-  devtool: 'source-map',
   plugins: [
     // new webpack.optimize.UglifyJsPlugin()
     new BrowserSyncPlugin({
-      // browse to http://localhost:3000/ during development, 
-      // ./public directory is being served 
+      // browse to http://localhost:3000/ during development,
+      // ./public directory is being served
       host: 'localhost',
       port: 3002,
       proxy: 'http://localhost:8360'

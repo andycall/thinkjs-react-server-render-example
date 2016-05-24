@@ -18,7 +18,8 @@ export default class extends think.logic.base {
 
     let rules = {
       title: "string",
-      content: "string"
+      content: "string",
+      obj: "string"
     }
     
     let flag = this.validate(rules);

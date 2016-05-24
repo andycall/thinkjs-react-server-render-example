@@ -7,9 +7,22 @@ export default class extends think.controller.base {
    * some base method in here
    */
 
-  __before () {
+  async __before () {
     this.__CLIENT_DATA__ = {};
     this.templateFile = path.join(__dirname, '../../../view/home/index_index.html');
+
+    let isLogin = await this.isLogin();
+    let token = await this.session('__CSRF__');
+
+    this.__CLIENT_DATA__.isLogin = isLogin
+    this.__CLIENT_DATA__.token = token;
+
+    if (isLogin) {
+      let user = await this.session('userInfo');
+
+      this.__CLIENT_DATA__.username = user.name;
+      this.__CLIENT_DATA__.avatar = user.avatar;
+    }
 
     let oldDisplay = this.display;
     this.display = (...args) => {
@@ -25,20 +38,7 @@ export default class extends think.controller.base {
   }
 
 
-  async init(http) {
+  init(http) {
     super.init(http);
-
-    let isLogin = await this.isLogin();
-    let token = await this.session('__CSRF__');
-
-    this.__CLIENT_DATA__.isLogin = isLogin
-
-    if (isLogin) {
-      let user = await this.session('userInfo');
-
-      this.__CLIENT_DATA__.username = user.name;
-      this.__CLIENT_DATA__.avatar = user.avatar;
-      this.__CLIENT_DATA__.token = token;
-    }
   }
 }

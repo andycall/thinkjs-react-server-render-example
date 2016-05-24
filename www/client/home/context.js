@@ -13,13 +13,15 @@ console.error = (function() {
 
 export default class ContextComponent extends React.Component {
   getChildContext() {
-    let { token, isLogin, username, avatar} = this.props;
+    let { token, isLogin, username, avatar, postList, articleList } = this.props;
 
     return {
       token,
       isLogin,
       username,
-      avatar
+      avatar,
+      postList,
+      articleList
     };
   }
 
@@ -33,5 +35,6 @@ ContextComponent.childContextTypes = {
   isLogin: React.PropTypes.bool,
   username: React.PropTypes.string,
   avatar: React.PropTypes.any,
-
+  postList: React.PropTypes.object,
+  articleList: React.PropTypes.object
 }

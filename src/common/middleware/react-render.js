@@ -24,6 +24,8 @@ export default class extends think.middleware.base {
 
     let self = this;
 
+    let clientData = JSON.parse(decodeURIComponent(self.http._view.tVar.__CLIENT_DATA__));
+
     return new Promise(function (resolve, reject) {
       match({routes: moduleRoutes, location: self.http.url}, (error, redirectLocation, renderProps) => {
         if (error) {
@@ -33,7 +35,7 @@ export default class extends think.middleware.base {
           resolve(self.http.redirect(redirectLocation));
         }
         else if (renderProps) {
-          resolve(renderToString(<ContextComponent {...JSON.parse(decodeURIComponent(self.http._view.tVar.__CLIENT_DATA__))}>
+          resolve(renderToString(<ContextComponent {...clientData}>
             <RouterContext {...renderProps} />
           </ContextComponent>));
         }

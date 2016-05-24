@@ -11,19 +11,21 @@ export default class Submit extends React.Component {
   handleClick () {
     let contentState = this.props.editorState.getCurrentContent();
 
-    this.props.onSubmit(stateToHTML(contentState));
+    this.props.onSubmit(stateToHTML(contentState), convertToRaw(contentState));
   }
 
   render () {
+    let buttonText = this.props.mode === 'new' ? '发布文章' : '更新文章'
+
     return (
       <li className="_namespace" >
         <ToolTip
           placement="top"
           mouseEnterDelay={0}
-          overlay={'发布文章'}
+          overlay={buttonText}
           animation="zoom"
         >
-        <a className="fa fa-mail-forward" onClick={this.handleClick.bind(this)}>发布文章</a>
+        <a className="fa fa-mail-forward" onClick={this.handleClick.bind(this)}>{buttonText}</a>
         </ToolTip>
       </li>
     )

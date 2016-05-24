@@ -6,5 +6,5 @@
  */
 export default {
   logic_before: ["prepend", "csrf"],
-  view_parse: ["append", 'react-render']
+  // view_parse: ["append", 'react-render']
 }

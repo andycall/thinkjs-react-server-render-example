@@ -18,9 +18,11 @@
 
 .new-note {
   border-bottom: 1px solid #d9d9d9;
-
+  overflow: hidden;
+  
   .new-note-link {
     display: block;
+    float: left;
     padding: 5px 10px 5px 20px;
     margin-top: 8px;
     font-style: italic;
@@ -48,6 +50,17 @@
       font-size: 18px;
       margin-right: 5px;
     }
+  }
+
+  .post-count {
+    display: block;
+    float: right;
+    padding: 5px 10px 5px 20px;
+    margin-top: 8px;
+    font-style: italic;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 20px;
   }
 }
 
