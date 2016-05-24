@@ -6,7 +6,7 @@ import {
   convertToRaw,
   convertFromRaw
 } from 'draft-js';
-import { browserHistory } from 'react-router'
+import _ from 'lodash'
 
 import './index.scss'
 import 'draft-js/dist/Draft.css'
@@ -73,7 +73,11 @@ export default class MyEditor extends React.Component {
   }
 
   getEditStateFromPageId (pageId) {
-    let postList = this.context.postList;
+    let postList = this.props.postList;
+    if (_.isEmpty(postList)) {
+      return;
+    }
+
     pageId = (pageId || pageId === 0) || this.props.pageId;
     let postData = postList.data.filter((val) => {
       return val.article_id === parseInt(pageId);
@@ -150,5 +154,4 @@ export default class MyEditor extends React.Component {
 
 MyEditor.contextTypes = {
   token: React.PropTypes.string,
-  postList: React.PropTypes.object
 }

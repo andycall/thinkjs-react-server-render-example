@@ -36,7 +36,8 @@ export default class extends Base {
   }
 
   async listAction () {
-    let postList = await this.getList();
+    let userInfo = await this.session('userInfo');
+    let postList = await this.getList(userInfo.id);
 
     return this.success(postList);
   }

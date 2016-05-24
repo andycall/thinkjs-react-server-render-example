@@ -33,6 +33,15 @@ export default {
         })
 
         break;
+
+      case '/home/post':
+        require.ensure([], (require) => {
+          cb(null, [
+            require('./PostRoute')
+          ])
+        })
+
+        break;
     }
   },
   indexRoute: {

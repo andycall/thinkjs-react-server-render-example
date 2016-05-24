@@ -6,12 +6,12 @@ export default class PageList extends React.Component {
 
   render () {
 
-    let articleList = this.context.articleList.data.map((val, index) => {
+    let articleList = this.props.articleList.map((val, index) => {
       return (
         <li key={index}>
           <div>
             <div className="list-top">
-              <a href="www.baidu.com" className="author-name">{val.name}</a>
+              <a className="author-name">{val.name}</a>
               <em> · </em>
               <span className="time">{val.create_time}</span>
             </div>
@@ -22,8 +22,6 @@ export default class PageList extends React.Component {
               <span>阅读 {this.props.read}</span>
               <span> · </span>
               <span>评论 {this.props.comment}</span>
-              <span> · </span>
-              <span>喜欢 {this.props.like}</span>
             </div>
           </div>
         </li>
@@ -36,8 +34,4 @@ export default class PageList extends React.Component {
       </ul>
     )
   }
-}
-
-PageList.contextTypes = {
-  articleList: React.PropTypes.object
 }

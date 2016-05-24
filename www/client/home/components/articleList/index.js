@@ -43,29 +43,31 @@ export default class ArticleList extends React.Component {
   }
 
   render() {
-    let postList = this.context.postList;
-
+    let postList = this.props.postList;
+    let pages;
     let { count, data } = postList;
     let pageId = parseInt(this.props.pageId);
 
     let height = this.state.height;
     let style = _.assign(_.cloneDeep(this.props.style), {height: height} );
 
-    let pages = data.map((val, index) => {
+    if (!_.isEmpty(postList)) {
+      pages = data.map((val, index) => {
 
-      let activeClassName = classNames({
-        'one-note': true,
-        'active': val.article_id === pageId
+        let activeClassName = classNames({
+          'one-note': true,
+          'active': val.article_id === pageId
+        })
+
+        return (
+          <li className={activeClassName} key={index} onClick={this.switchPage.bind(this, val.article_id)}>
+            <i className="icon icon-note note-icon stop-share"></i>
+            <div className="abbreviate" dangerouslySetInnerHTML={{__html: val.article_content}} />
+            <a href="javascript:void(0)" data-type="edit" className="note-link title">{val.article_title}</a>
+          </li>
+        )
       })
-
-      return (
-        <li className={activeClassName} key={index} onClick={this.switchPage.bind(this, val.article_id)}>
-          <i className="icon icon-note note-icon stop-share"></i>
-          <div className="abbreviate" dangerouslySetInnerHTML={{__html: val.article_content}} />
-          <a href="javascript:void(0)" data-type="edit" className="note-link title">{val.article_title}</a>
-        </li>
-      )
-    })
+    }
 
     return (
       <div className="_namespace" style={style}>
@@ -82,8 +84,4 @@ export default class ArticleList extends React.Component {
       </div>
     )
   }
-}
-
-ArticleList.contextTypes = {
-  postList: React.PropTypes.object
 }
