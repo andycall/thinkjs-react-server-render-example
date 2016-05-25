@@ -18,6 +18,12 @@ export default class extends think.model.base {
     }).countSelect();
   }
 
+  async getArticleById (articleId) {
+    return await this.where({
+      article_id: articleId
+    }).find();
+  }
+
   async getArticles (page = 0, limit = 10) {
     return await this.page(page, limit).countSelect();
   }

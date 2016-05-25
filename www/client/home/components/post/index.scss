@@ -1,0 +1,30 @@
+._namespace {
+  padding: 80px 40px 10px;
+
+  .title {
+    word-break: break-all;
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 1.5;
+  }
+
+  .meta-top {
+    margin: 20px 0;
+
+    span {
+      position: relative;
+      top: 1px;
+      margin-right: 10px;
+      font-size: 12px;
+      color: #999999;
+      vertical-align: middle;
+    }
+  }
+
+  .show-content {
+    color: #2f2f2f;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.7;
+  }
+}

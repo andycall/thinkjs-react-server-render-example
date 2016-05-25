@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 import './index.scss'
 
@@ -16,7 +17,7 @@ export default class PageList extends React.Component {
               <span className="time">{val.create_time}</span>
             </div>
             <h3 className="list-title">
-              <a href="#">{val.article_title}</a>
+              <Link to={"/home/post?post_id=" + val.article_id}>{val.article_title}</Link>
             </h3>
             <div className="list-bottom">
               <span>阅读 {this.props.read}</span>

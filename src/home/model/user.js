@@ -7,4 +7,10 @@ export default class extends think.model.base {
     super.init(...args);
     this.tableName = "user"
   }
+
+  async getUserById (userId) {
+    return await this.where({
+      id: userId
+    }).find()
+  }
 }
