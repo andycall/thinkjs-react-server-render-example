@@ -9,7 +9,7 @@ const location = `${pathname}${search}${hash}`
 
 import 'font-awesome/css/font-awesome.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-
+import 'bootstrap/dist/js/npm'
 import './global.scss'
 
 import './plugin'

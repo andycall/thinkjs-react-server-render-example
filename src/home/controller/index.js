@@ -18,7 +18,7 @@ export default class extends Base {
 
     this.__CLIENT_DATA__.articleList = {
       data: articleList.map((val) => {
-        val.create_time = moment(parseInt(val.create_time)).fromNow();
+        val.create_time = moment(parseInt(val.create_time)).format('YYYY-MM-DD hh:mm');
         return val;
       })
     };
@@ -32,6 +32,9 @@ export default class extends Base {
 
     let articleList = await articleModel.getArticleWithUser(page);
 
-    return this.success(articleList);
+    return this.success(articleList.map((val) => {
+      val.create_time = moment(parseInt(val.create_time)).format('YYYY-MM-DD hh:mm');
+      return val;
+    }));
   }
 }

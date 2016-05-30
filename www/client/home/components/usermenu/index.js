@@ -3,6 +3,8 @@ import {Link} from 'react-router'
 
 import './index.scss'
 
+import image from './image/user.png'
+
 export default class UserMenu extends React.Component {
   render() {
     let isLogin = this.context.isLogin;
@@ -24,7 +26,20 @@ export default class UserMenu extends React.Component {
     }
     else {
       loginForm = (
-          <div>The username is : {this.context.username}</div>
+        <div className="login-form">
+          <a className="user avatar" data-toggle="dropdown" href="javascript:void(0)">
+            <img src={image} />
+            <b className="caret" />
+          </a>
+          <ul className="dropdown-menu arrow-top">
+            <li>
+              <Link to="/home/write"><i className="fa fa-pencil" /> 写文章</Link>
+            </li>
+            <li>
+              <a href="/home/login/logout"><i className="fa fa-sign-out" /> 登出</a>
+            </li>
+          </ul>
+        </div>
       )
     }
 
